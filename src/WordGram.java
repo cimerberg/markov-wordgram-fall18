@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * WordGram objects represent a k-gram of strings/words.
  * 
@@ -21,6 +23,12 @@ public class WordGram {
 		myWords = new String[size];
 		myToString = null;
 		myHash = 0;
+		int index = 0;
+		
+		for (int i = start; i < start + size; i++) {
+			myWords[index] = source[i];
+			index +=1 ;
+		}
 	}
 
 	/**
@@ -40,29 +48,34 @@ public class WordGram {
 	 * @return
 	 */
 	public int length(){
-		// TODO: change this
-		return 0;
+		int counter = 0;
+		
+		for (int i = 0; i < myWords.length; i++ ) {
+			counter +=1; 
+		}
+		return counter;
 	}
 
 
 	@Override
 	public boolean equals(Object o) {
+		
 		if (! (o instanceof WordGram) || o == null){
 			return false;
 		}
-
-	    // TODO: complete this method
-		return true;
+		
+		WordGram wg = (WordGram) o;		
+		
+		return Arrays.equals(wg.myWords, this.myWords);
 	}
 
 	@Override
 	public int hashCode(){
 		if (myHash == 0) {
-		String word = myWords.toString();
-		myHash = word.hashCode();
+			return myHash = myWords.toString().hashCode();
 		}
 		
-		return myHash;
+		return 0;
 	}
 	
 
@@ -73,19 +86,21 @@ public class WordGram {
 	 */
 	public WordGram shiftAdd(String last) {
 		WordGram wg = new WordGram(myWords,0,myWords.length);
-		// TODO: Complete this method
+		
+		for (int i = 0; i < myWords.length -1; i++) {
+			wg.myWords[i] = myWords[i+1];
+		}
+		
+		wg.myWords[myWords.length -1] = last;
+		
 		return wg;
 	}
 
 	@Override
 	public String toString(){
 		if (myToString == null) {
-			myToString = myWords[0];
-			for (int i = 1; i < myWords.length; i++) {
-				myToString.join(" ", myWords[i]);
+			myToString = String.join(" ", myWords);
 			}
-		}
-		
 		return myToString;
-	}
+		}
 }
