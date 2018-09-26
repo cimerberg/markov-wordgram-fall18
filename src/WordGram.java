@@ -20,6 +20,7 @@ public class WordGram {
 	public WordGram(String[] source, int start, int size) {
 		myWords = new String[size];
 		myToString = null;
+		myHash = 0;
 	}
 
 	/**
@@ -74,7 +75,11 @@ public class WordGram {
 
 	@Override
 	public String toString(){
-		// TODO: Complete this method	
+		myToString = myWords[0];
+		for (int i = 1; i < myWords.length; i++) {
+			myToString.join(" ", myWords[i]);
+		}
+		
 		return myToString;
 	}
 }
