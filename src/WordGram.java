@@ -19,7 +19,7 @@ public class WordGram {
 	 */
 	public WordGram(String[] source, int start, int size) {
 		myWords = new String[size];
-		// TODO: initialize myWords and ...
+		myToString = null;
 	}
 
 	/**
