@@ -57,7 +57,11 @@ public class WordGram {
 
 	@Override
 	public int hashCode(){
-		// TODO: complete this method
+		if (myHash == 0) {
+		String word = myWords.toString();
+		myHash = word.hashCode();
+		}
+		
 		return myHash;
 	}
 	
@@ -75,9 +79,11 @@ public class WordGram {
 
 	@Override
 	public String toString(){
-		myToString = myWords[0];
-		for (int i = 1; i < myWords.length; i++) {
-			myToString.join(" ", myWords[i]);
+		if (myToString == null) {
+			myToString = myWords[0];
+			for (int i = 1; i < myWords.length; i++) {
+				myToString.join(" ", myWords[i]);
+			}
 		}
 		
 		return myToString;
